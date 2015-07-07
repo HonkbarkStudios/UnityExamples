@@ -26,7 +26,13 @@ public class PersistenceSceneController : MonoBehaviour {
 	}
 
 	void Start() {
-		var score = PersistenceManager.Instance.Load(HighScore.NameOfFile) as HighScore;
-		Text.text = score.score.ToString();
+		this.LoadHighScore();
+	}
+
+	private void LoadHighScore() {
+		var highscore = PersistenceManager.Instance.Load(HighScore.NameOfFile) as HighScore;
+		if(highscore != null) {
+			this.Text.text = highscore.score.ToString();
+		}
 	}
 }
