@@ -10,6 +10,11 @@ public class TapController : MonoBehaviour {
 		
 	}
 
+	private void AddForceToGameObject() {
+		this.rigidBody.velocity = Vector2.zero;
+		this.rigidBody.AddForce(this.jumpForce, ForceMode.Impulse);
+	}
+
 	private bool UserDidTapOnPhone() {
 		var didTap = false;
 		foreach(Touch touch in Input.touches) {
