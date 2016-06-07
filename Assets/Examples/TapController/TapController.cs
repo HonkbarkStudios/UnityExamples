@@ -8,7 +8,7 @@ public class TapController : MonoBehaviour {
 	public Vector2 jumpForce = new Vector2(0, 4f);
 
 	void Update () {
-		if (this.UserDidTapOnPhone () && !this.UserTappedOnMenu()) {
+		if (this.UserDidTapOnPhone () && !this.UserTappedOnMenu() || this.UserDidEditorTap()) {
 			this.AddForceToGameObject ();
 		}
 	}
@@ -38,5 +38,13 @@ public class TapController : MonoBehaviour {
 			}
 		}
 		return didTapMenu;
+	}
+		
+	private bool UserDidEditorTap() {
+		var didEditorTap = false;
+		if(Application.isEditor && Input.GetKeyUp(KeyCode.Space)) {
+			didEditorTap = true;
+		}
+		return didEditorTap;
 	}
 }
