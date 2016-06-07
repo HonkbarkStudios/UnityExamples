@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class TapController : MonoBehaviour {
@@ -7,7 +8,7 @@ public class TapController : MonoBehaviour {
 	public Vector2 jumpForce = new Vector2(0, 4f);
 
 	void Update () {
-		if (this.UserDidTapOnPhone ()) {
+		if (this.UserDidTapOnPhone () && !this.UserTappedOnMenu()) {
 			this.AddForceToGameObject ();
 		}
 	}
@@ -25,5 +26,17 @@ public class TapController : MonoBehaviour {
 			}
 		}
 		return didTap;
+	}
+
+	private bool UserTappedOnMenu() {
+		bool didTapMenu = false;
+		if(Input.touchCount > 0) {
+			int pointerID = Input.touches[0].fingerId;
+			if (EventSystem.current.IsPointerOverGameObject(pointerID))
+			{
+				didTapMenu = true;
+			}
+		}
+		return didTapMenu;
 	}
 }
