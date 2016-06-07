@@ -7,7 +7,9 @@ public class TapController : MonoBehaviour {
 	public Vector2 jumpForce = new Vector2(0, 4f);
 
 	void Update () {
-		
+		if (this.UserDidTapOnPhone ()) {
+			this.AddForceToGameObject ();
+		}
 	}
 
 	private void AddForceToGameObject() {
